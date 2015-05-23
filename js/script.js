@@ -5,11 +5,14 @@
   var loadedIds = [];
   var tagList, tagStrict;
 
+  window.imageApp = window.imageApp || {};
+  
   /**
    * Returns all query string parameters
    * @param {string} src Optional URL
    * @returns {Object}
    */
+
   function getQueryParameters(src) {
     var source, result = {};
 
@@ -29,7 +32,8 @@
 
     return result;
   }
-
+  window.imageApp.getQueryParameters = getQueryParameters;
+  
   function buildFlickrUrl(page, tags, strict) {
     var base = 'https://api.flickr.com/services/rest/?';
     
@@ -67,6 +71,7 @@
     
     return base + search;
   }
+  window.imageApp.buildFlickrUrl = buildFlickrUrl;
 
   function loadImages(page) {
     var url = buildFlickrUrl(page, tagList, tagStrict);
@@ -92,13 +97,13 @@
 
       $('.result').append(template(newPhotos));
 
-      // Add pagination information for the Infinite Scroll feature
+      // Update pagination information for the Infinite Scroll feature
       var pageCount = data.photos.page;
       $('.result').attr('data-page', pageCount);
     });
   }
 
-  function updateLoadOptions() {
+  $(function () {
     var params = getQueryParameters();
     
     tagList = params.tags
@@ -106,10 +111,7 @@
       .split(' ');
 
     tagStrict = params.strict;
-  }
 
-  $(function () {
-    updateLoadOptions();
     loadImages();
 
     if (tagList) {
@@ -118,7 +120,6 @@
       var template = Handlebars.compile(source);
       $('.tags-list').html(template(tagList));  
     }
-    
   });
 
   // Simple Infinite Scroll feature
@@ -131,6 +132,4 @@
       loadImages(parseInt(pageCount) + 1);
     }
   });
-
-  
 }(jQuery));
