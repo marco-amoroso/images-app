@@ -1,0 +1,38 @@
+@import 'reset';
+
+ /*// Breakpoints:
+  $bp-medium: "(min-width: 640px)" !default;
+  $bp-large: "(min-width: 972px)" !default; 
+  $bp-x-large: "(min-width: 1060px)" !default; 
+  $bp-xx-large: "(min-width: 1200px)" !default;*/
+
+img {
+  max-width: 100%;
+}
+    
+.list-image {
+  position: relative;
+  overflow: auto;
+  padding: 0 0.5em 0 0.5em;
+}
+
+.list-image--item {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  padding: 0.5em;
+
+  @media (min-width: 640px) {
+    width: 50%;
+    float: left;
+    height: 250px;
+    overflow: hidden;
+    padding: 1em 0.5em 0em 0.5em;
+  }
+
+  @media (min-width: 972px) {
+      width: 33.33%;
+
+  }
+}

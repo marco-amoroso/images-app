@@ -1,0 +1,14 @@
+{
+  "name": "images-app",
+  "version": "0.1.0",
+  "homepage": "https://github.com/marco-amoroso/images-app",
+  "description": "Image app to display Coffee tagged images from Flickr",
+  "authors": [
+    "Marco Amoroso"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "jquery": "~2.1.4",
+    "handlebars": "~3.0.3"
+  }
+}

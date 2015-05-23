@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Image App - Tag Coffee</title> 
+    <link rel="stylesheet" href="./build/css/all.min.css" />
+  </head>
+  <body>
+    <div id="page">
+      <!-- HEADER -->
+      
+      <div id="main">
+        <div id="result"></div>
+        <!-- {{>body}} -->
+      </div>
+      
+      <!-- FOOTER -->
+    </div>
+    <script src="./build/js/all.min.js"></script>
+    <script id="image-template" type="text/x-handlebars-template">
+      <ul class="list-image">
+        {{#each .}}
+          <li class="list-image--item">
+            <img src="https://farm{{this.farm}}.staticflickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_c.jpg" alt="{{this.title}}">
+          </li>
+        {{/each}}
+      </ul>
+    </script>
+</body>
+</html>
