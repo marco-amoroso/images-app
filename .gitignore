@@ -1,6 +1,8 @@
 .DS_Store
 .sass-cache
+.grunt
 build/
 node_modules/
 bower_components/
 js/globals.js
+_SpecRunner.html

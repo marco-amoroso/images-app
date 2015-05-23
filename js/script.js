@@ -106,9 +106,11 @@
   $(function () {
     var params = getQueryParameters();
     
-    tagList = params.tags
+    if (params.tags) {
+      tagList = params.tags
       .replace(/[^\w\s]/gi, ' ')
-      .split(' ');
+      .split(' ');  
+    }
 
     tagStrict = params.strict;
 
@@ -120,16 +122,18 @@
       var template = Handlebars.compile(source);
       $('.tags-list').html(template(tagList));  
     }
-  });
 
-  // Simple Infinite Scroll feature
-  $(window).simpleInfiniteScroll({
-    success: function () {
-      // Show Loader
-      $('.spinner').show();
-      
-      var pageCount = $('.result').attr('data-page');
-      loadImages(parseInt(pageCount) + 1);
-    }
+    // Simple Infinite Scroll feature
+    $(window).simpleInfiniteScroll({
+      success: function () {
+        // Show Loader
+        $('.spinner').show();
+        
+        var pageCount = $('.result').attr('data-page');
+        if (pageCount) {
+          loadImages(parseInt(pageCount) + 1);  
+        }
+      }
+    });
   });
 }(jQuery));

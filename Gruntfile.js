@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Project configuration.
   grunt.initConfig({
@@ -17,6 +18,20 @@ module.exports = function(grunt) {
 
     bower_components: 'bower_components',
 
+    jasmine: {
+      all: {
+        src: '<%= js_dir %>/*.js',
+        options: {
+          specs: 'spec/*Spec.js',
+          vendor: [
+            '<%= bower_components %>/jquery/dist/jquery.min.js',
+            '<%= bower_components %>/handlebars/handlebars.min.js'
+          ]
+        },
+        host: 'http://localhost:9000/',
+        keepRunner: true
+      }
+    },
     jshint: {
       all: ['Gruntfile.js', 'test/**/*.js', 'js/**/*.js'],
       options: {
@@ -25,6 +40,9 @@ module.exports = function(grunt) {
     },
     sass: {
       dist: {
+        options: {
+          sourcemap: 'none'
+        },
         files: {
           '<%= css_build %>/all.min.css': '<%= css_dir %>/main.scss'
         }
@@ -65,4 +83,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['css', 'js']);
   grunt.registerTask('css', ['sass']);
   grunt.registerTask('js', ['jshint', 'uglify']);
+  grunt.registerTask('test', ['jasmine']);
 };
