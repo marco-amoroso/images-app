@@ -7,25 +7,22 @@
     <link rel="stylesheet" href="./build/css/all.min.css" />
   </head>
   <body>
-    <div id="page">
-      <!-- HEADER -->
+    <div class="page">
+      <header class="main-header text-center">
+        <h1>Flickr Image App</h1>
+        <h2>Coffee Galore</h2>
+      </header>
       
-      <div id="main">
-        <div id="result"></div>
-        <!-- {{>body}} -->
-      </div>
-      
-      <!-- FOOTER -->
+      <ul class="result list-image"></ul>
+      <div class="spinner"></div>
     </div>
     <script src="./build/js/all.min.js"></script>
     <script id="image-template" type="text/x-handlebars-template">
-      <ul class="list-image">
-        {{#each .}}
-          <li class="list-image--item">
-            <img src="https://farm{{this.farm}}.staticflickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_c.jpg" alt="{{this.title}}">
-          </li>
-        {{/each}}
-      </ul>
+      {{#each .}}
+        <li class="list-image--item">
+          <img src="https://farm{{this.farm}}.staticflickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_c.jpg" alt="{{this.title}}">
+        </li>
+      {{/each}}
     </script>
 </body>
 </html>
