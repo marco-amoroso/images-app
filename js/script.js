@@ -3,11 +3,73 @@
 
 (function ($) {
   var loadedIds = [];
+  var tagList, tagStrict;
+
+  /**
+   * Returns all query string parameters
+   * @param {string} src Optional URL
+   * @returns {Object}
+   */
+  function getQueryParameters(src) {
+    var source, result = {};
+
+    if (src) {
+      source = src;
+    } else {
+      source = window.location.search;
+    }
+
+    var params = source.split(/\?|\&/);
+    params.shift();
+
+    $.each(params, function () {
+      var param = this.split('=');
+      result[param[0]] = param[1];
+    });
+
+    return result;
+  }
+
+  function buildFlickrUrl(page, tags, strict) {
+    var base = 'https://api.flickr.com/services/rest/?';
+    
+    var options = {
+      method: 'flickr.photos.getRecent', // Default - `flickr.photos.search` does not accept empty tags
+      per_page : 36,
+      page: 1,
+      api_key: apiKey,
+      format: 'json',
+      tag_mode: 'any', // OR search
+      nojsoncallback: '1'
+    };
+
+    if (tags) {
+      options.method = 'flickr.photos.search';
+      options.tags = tags;
+    }
+
+    if (page) {
+      options.page = page;
+    }
+
+    if (strict === '1') {
+      options.tag_mode = 'all'; // AND search
+    }
+
+    // Build URL parameters to attach to Base URL
+    var search = '';
+    for (var key in options) {
+      if (search !== '' && key !== 0) {
+        search += '&';
+      }
+      search += key + '=' + encodeURIComponent(options[key]);
+    }
+    
+    return base + search;
+  }
 
   function loadImages(page) {
-    var perPage = 36; // divisible by 2,3 and 4.
-    page = page || 1;
-    var url = 'https://api.flickr.com/services/rest/?method=flickr.photos.search&page=' + page + '&per_page=' + perPage + '&api_key=' + apiKey +'&tags=coffee&format=json&nojsoncallback=1';
+    var url = buildFlickrUrl(page, tagList, tagStrict);
 
     $.getJSON( url, function(data) {
       var source = $('#image-template').html(),
@@ -36,6 +98,29 @@
     });
   }
 
+  function updateLoadOptions() {
+    var params = getQueryParameters();
+    
+    tagList = params.tags
+      .replace(/[^\w\s]/gi, ' ')
+      .split(' ');
+
+    tagStrict = params.strict;
+  }
+
+  $(function () {
+    updateLoadOptions();
+    loadImages();
+
+    if (tagList) {
+      // Update Tag List in Header
+      var source = $('#tagslist-template').html();
+      var template = Handlebars.compile(source);
+      $('.tags-list').html(template(tagList));  
+    }
+    
+  });
+
   // Simple Infinite Scroll feature
   $(window).simpleInfiniteScroll({
     success: function () {
@@ -47,5 +132,5 @@
     }
   });
 
-  loadImages();
+  
 }(jQuery));

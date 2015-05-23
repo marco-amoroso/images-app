@@ -3,20 +3,43 @@
   <head>
     <meta charset="utf-8" />
     <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Image App - Tag Coffee</title> 
+    <title>Image App - Tag Coffee</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./build/css/all.min.css" />
   </head>
   <body>
     <div class="page">
+      <!--Header.Start-->
       <header class="main-header text-center">
         <h1>Flickr Image App</h1>
-        <h2>Coffee Galore</h2>
+        <div class="tags-list">
+
+        </div>
       </header>
+      <!--Header.End-->
       
+      <!--Result.Start-->
       <ul class="result list-image"></ul>
+      <!--Result.End-->
+      
+      <!--Spinner.Start-->
       <div class="spinner"></div>
+      <!--Spinner.End-->
+      
+      <!--Tags.Start-->
+      <form class="tag-search">
+        <i class="tag-search--icon fa fa-tags"></i>
+        <input type="text" name="tags" placeholder="Search" class="tag-search--tags" />
+        Strict mode <input type="checkbox" name="strict" value="1" class="tag-search--strict" checked />
+      </form>
+      <!--Tags.End-->
     </div>
     <script src="./build/js/all.min.js"></script>
+    <script id="tagslist-template" type="text/x-handlebars-template">
+      {{#each .}}
+        <span>{{this}}</span>
+      {{/each}}
+    </script>
     <script id="image-template" type="text/x-handlebars-template">
       {{#each .}}
         <li class="list-image--item">
@@ -24,5 +47,5 @@
         </li>
       {{/each}}
     </script>
-</body>
+  </body>
 </html>
