@@ -1,6 +1,7 @@
 {
   "name": "images-app",
   "version": "0.1.1",
+  "description": "Image app to display tagged images from Flickr",
   "devDependencies": {
     "bower": "^1.4.1",
     "grunt": "~0.4.5",
@@ -11,6 +12,7 @@
     "grunt-contrib-uglify": "^0.9.1",
     "grunt-contrib-watch": "^0.6.1"
   },
+  "license": "MIT",
   "scripts": {
     "test": "./node_modules/grunt-cli/bin/grunt test",
     "postinstall": "node_modules/.bin/bower install"
