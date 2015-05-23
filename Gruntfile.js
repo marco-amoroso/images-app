@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: {
-          '<%= css_build %>/all.min.css': '<%= css_dir %>/style.scss'
+          '<%= css_build %>/all.min.css': '<%= css_dir %>/main.scss'
         }
       }
     },
@@ -40,6 +40,7 @@ module.exports = function(grunt) {
             '<%= bower_components %>/jquery/dist/jquery.min.js',
             '<%= bower_components %>/handlebars/handlebars.min.js',
             '<%= js_dir %>/globals.js',
+            '<%= js_dir %>/simpleInfiniteScrolling.js',
             '<%= js_dir %>/script.js'
           ]
         }
