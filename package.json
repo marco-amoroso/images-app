@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "./node_modules/grunt-cli/bin/grunt test",
+    "test": "grunt test",
     "postinstall": "node_modules/.bin/bower install"
   }
 }
