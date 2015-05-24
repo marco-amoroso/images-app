@@ -15,6 +15,5 @@
   "license": "MIT",
   "scripts": {
     "test": "grunt test"
-    //"postinstall": "bower install"
   }
 }
