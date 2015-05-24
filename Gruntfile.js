@@ -72,6 +72,7 @@ module.exports = function(grunt) {
             '<%= js_dir %>/globals.js',
             '<%= js_dir %>/simpleInfiniteScrolling.js',
             '<%= js_dir %>/utility.js',
+            '<%= js_dir %>/history.js',
             '<%= js_dir %>/flickrApiUrl.js',
             '<%= js_dir %>/script.js'
           ]
@@ -97,5 +98,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['css', 'js']);
   grunt.registerTask('css', ['scsslint', 'sass']);
   grunt.registerTask('js', ['jshint', 'uglify']);
-  grunt.registerTask('test', ['jasmine']);
+  grunt.registerTask('test', ['jasmine', 'scsslint']);
 };

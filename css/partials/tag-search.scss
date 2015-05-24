@@ -2,7 +2,7 @@
   background-color: $primary-color;
   bottom: 0;
   color: $white;
-  padding: 1em;
+  padding: .3em;
   position: fixed;
   right: 0;
   text-align: center;
@@ -10,8 +10,9 @@
   
   @media #{$bp-medium} {
     border: 3px solid $white;
-    border-radius: 7px 0 0 7px;
+    border-radius: .3em 0 0 .3em;
     bottom: 10px;
+    padding: 1em;
     right: -3px;
     width: auto;
   }
@@ -26,3 +27,21 @@
   margin: .3em auto;
   width: 90%;
 }
+
+.tag-search__history {
+  cursor: pointer;
+  margin: 0 .5em;
+}
+
+// .tag-search__button {
+//   position: absolute;
+//   top: 1.3em;
+// }
+
+// .tag-search__button--back {
+//   left: 1.3em;
+// }
+
+// .tag-search__button--forward {
+//   right: 1.3em;
+// }

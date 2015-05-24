@@ -76,7 +76,6 @@
         tags: tagList,
         separator: (params.strict === '1') ? '&' : 'or' 
       };
-      console.log(tagObj);
 
       // Update Tag List in Header
       var source = $('#tagslist-template').html();

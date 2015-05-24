@@ -21,7 +21,7 @@
       <!--Result.Start-->
       <div class="result">
         <ul class="list-image"></ul>
-        <div class="result__box box"></div>  
+        <div class="result__box box text-center"></div>  
       </div>
       <!--Result.End-->
     
@@ -31,7 +31,15 @@
       
       <!--Tags.Start-->
       <form class="tag-search">
-        <i class="tag-search__icon fa fa-tags"></i>
+        <div class="box text-center">
+          <span class="tag-search__history tag-search__history--back">
+            <i class="fa fa-arrow-left"></i>
+          </span>
+          <span>History</span>
+          <span class="tag-search__history tag-search__history--forward">
+            <i class="fa fa-arrow-right"></i>
+          </span>
+        </div>
         <input type="text" name="tags" placeholder="Search by tags" class="tag-search__tags" />
         Strict mode <input type="checkbox" name="strict" value="1" class="tag-search__strict" />
       </form>
