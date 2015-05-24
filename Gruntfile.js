@@ -22,7 +22,7 @@ module.exports = function(grunt) {
       all: {
         src: '<%= js_dir %>/*.js',
         options: {
-          specs: 'spec/*Spec.js',
+          specs: 'tests/unit/*Spec.js',
           vendor: [
             '<%= bower_components %>/jquery/dist/jquery.min.js',
             '<%= bower_components %>/handlebars/handlebars.min.js'
