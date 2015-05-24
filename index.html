@@ -39,9 +39,13 @@
     </div>
     <script src="./build/js/all.min.js"></script>
     <script id="tagslist-template" type="text/x-handlebars-template">
-      {{#each .}}
+      <p>Images with tags:
+      {{#each tags}}
+        {{#unless @first}}
+         {{../../separator}}
+        {{/unless}}
         <span class="badge">{{this}}</span>
-      {{/each}}
+      {{/each}}</p>
     </script>
     <script id="image-template" type="text/x-handlebars-template">
       {{#each .}}

@@ -64,22 +64,34 @@
   $(function () {
     var params = window.imageApp.getQueryParameters();
 
+    // Tags
     if (params.tags) {
-      tagList = params.tags
-      .replace(/[^\w\s]/gi, ' ')
-      .split(' ');
-    }
+      
+      var tagListValue = params.tags.replace(/[^\w\s]/gi, ' ');
+      $('input[name=tags]').val(tagListValue);
+      
+      tagList = tagListValue.split(' ');
 
-    tagStrict = params.strict;
+      var tagObj = {
+        tags: tagList,
+        separator: (params.strict === '1') ? '&' : 'or' 
+      };
+      console.log(tagObj);
 
-    loadImages();
-
-    if (tagList) {
       // Update Tag List in Header
       var source = $('#tagslist-template').html();
       var template = Handlebars.compile(source);
-      $('.tags-list').html(template(tagList));
+      $('.tags-list').html(template(tagObj));
     }
+
+    // Keep last search history
+    if (params.strict === '1') {
+      tagStrict = params.strict;
+      $('input[name=strict]').attr('checked', true);  
+    }
+
+    //Preload images - Recent method
+    loadImages();
 
     // Simple Infinite Scroll feature
     $(window).simpleInfiniteScroll({
