@@ -11,15 +11,18 @@
   @media #{$bp-medium} {
     bottom: 10px;
     width: auto;
-    border-radius: 10px 0px 0px 10px;
+    right: -3px;
+    border-radius: 7px 0px 0px 7px;
+    border: 3px solid #FFF;
   }
-  .tag-search--strict {
+  
+  .tag-search__strict {
     vertical-align: initial;
   }
 }
 
-.tag-search--icon {
-  &:before{
-    color: #FFF;
-  }
+.tag-search__tags {
+  display: block;
+  width: 90%;
+  margin: 0.3em auto 0.3em;
 }

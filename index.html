@@ -21,7 +21,7 @@
       <!--Result.Start-->
       <div class="result">
         <ul class="list-image"></ul>
-        <div class="result--box box"></div>  
+        <div class="result__box box"></div>  
       </div>
       <!--Result.End-->
     
@@ -31,21 +31,21 @@
       
       <!--Tags.Start-->
       <form class="tag-search">
-        <i class="tag-search--icon fa fa-tags"></i>
-        <input type="text" name="tags" placeholder="Search by tags" class="tag-search--tags" />
-        Strict mode <input type="checkbox" name="strict" value="1" class="tag-search--strict" />
+        <i class="tag-search__icon fa fa-tags"></i>
+        <input type="text" name="tags" placeholder="Search by tags" class="tag-search__tags" />
+        Strict mode <input type="checkbox" name="strict" value="1" class="tag-search__strict" />
       </form>
       <!--Tags.End-->
     </div>
     <script src="./build/js/all.min.js"></script>
     <script id="tagslist-template" type="text/x-handlebars-template">
       {{#each .}}
-        <span>{{this}}</span>
+        <span class="badge">{{this}}</span>
       {{/each}}
     </script>
     <script id="image-template" type="text/x-handlebars-template">
       {{#each .}}
-        <li class="list-image--item">
+        <li class="list-image__item">
           <img src="https://farm{{this.farm}}.staticflickr.com/{{this.server}}/{{this.id}}_{{this.secret}}_c.jpg" alt="{{this.title}}">
         </li>
       {{/each}}

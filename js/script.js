@@ -51,7 +51,7 @@
 
       // Message Box if any
       if (messageBox) {
-        $('.result--box').show().html(messageBox);
+        $('.result__box').show().html(messageBox);
       }
       
       // Hide Loader

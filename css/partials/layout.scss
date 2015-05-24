@@ -1,0 +1,26 @@
+body, html {
+  height: 100%;
+}
+
+body {
+  font-family: $font-family;
+  background-color: $light-grey;
+}
+
+.page {
+  margin-bottom: 5em;
+}
+
+.result {
+  margin-bottom: 1em;
+}
+
+.main-header {
+  width: 100%;
+  padding: 1em;
+  background-color: $primary-color;
+  color: #FFF;
+
+  @extend %has-shadow;
+}
+
