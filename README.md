@@ -1,4 +1,4 @@
-# Flickr Image App
+# Flickr Image App - [![Build Status](https://travis-ci.org/marco-amoroso/images-app.svg?branch=master)](https://travis-ci.org/marco-amoroso/images-app)
 
 ### How to run me
 * Run `npm install`
