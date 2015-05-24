@@ -12,4 +12,5 @@ before_install:
 
 before_script:
   - gem install sass --version 3.4.13
+  - gem install scss-lint --version 0.29.0
   - grunt
