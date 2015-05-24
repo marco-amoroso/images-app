@@ -1,21 +1,21 @@
 .list-image {
-  position: relative;
   overflow: auto;
-  padding: 0 0.5em 0 0.5em;
+  padding: 0 .5em;
+  position: relative;
 }
 
 .list-image__item {
   list-style: none;
-  padding: 0.5em 0 0.5em;
   margin: 0;
+  padding: .5em 0;
   width: 100%;
 
   @media #{$bp-medium} {
-    width: 50%;
     float: left;
     height: 250px;
     overflow: hidden;
-    padding: 1em 0.5em 0em 0.5em;
+    padding: 1em .5em 0;
+    width: 50%;
   }
 
   @media #{$bp-large} {
@@ -23,12 +23,11 @@
   }
 
   @media #{$bp-xx-large} {
-    width: 25%;
     height: 200px;
+    width: 25%;
   }
 
   img {
     width: 100%;
-    @extend %has-shadow;
   }
 }

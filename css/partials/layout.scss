@@ -1,10 +1,11 @@
-body, html {
+body,
+html {
   height: 100%;
 }
 
 body {
-  font-family: $font-family;
   background-color: $light-grey;
+  font-family: $font-family;
 }
 
 .page {
@@ -16,11 +17,10 @@ body {
 }
 
 .main-header {
-  width: 100%;
-  padding: 1em;
-  background-color: $primary-color;
-  color: #FFF;
-
   @extend %has-shadow;
+  
+  background-color: $primary-color;
+  color: $white;
+  padding: 1em;
+  width: 100%;
 }
-

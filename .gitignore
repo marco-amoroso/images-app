@@ -2,6 +2,7 @@
 .sass-cache
 .grunt
 build/
+logs/
 node_modules/
 bower_components/
 js/globals.js

@@ -5,6 +5,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-scss-lint');
 
   // Project configuration.
   grunt.initConfig({
@@ -48,6 +49,17 @@ module.exports = function(grunt) {
         }
       }
     },
+    scsslint: {
+      allFiles: [
+        'css/partials/*.scss'
+      ],
+      options: {
+        config: '.scss-lint.yml',
+        reporterOutput: 'logs/scss-lint-report.xml',
+        colorizeOutput: true,
+        maxBuffer: 1000 * 1024
+      }
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
@@ -83,7 +95,7 @@ module.exports = function(grunt) {
   
   // Default task(s).
   grunt.registerTask('default', ['css', 'js']);
-  grunt.registerTask('css', ['sass']);
+  grunt.registerTask('css', ['scsslint', 'sass']);
   grunt.registerTask('js', ['jshint', 'uglify']);
   grunt.registerTask('test', ['jasmine']);
 };

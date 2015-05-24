@@ -1,13 +1,15 @@
-/*Breakpoints:*/
-$bp-x-small: "(min-width: 320px)";
-$bp-small: "(min-width: 480px)";
-$bp-medium: "(min-width: 640px)";
-$bp-large: "(min-width: 972px)"; 
-$bp-x-large: "(min-width: 1060px)"; 
-$bp-xx-large: "(min-width: 1200px)";
+//Breakpoints:
+$bp-x-small: '(min-width: 320px)';
+$bp-small: '(min-width: 480px)';
+$bp-medium: '(min-width: 640px)';
+$bp-large: '(min-width: 972px)'; 
+$bp-x-large: '(min-width: 1060px)'; 
+$bp-xx-large: '(min-width: 1200px)';
 
-$primary-color: #0584B4;
+$primary-color: #0584b4;
 $secondary-color: #fd5754;
 $light-grey: #efefef;
+$grey: #aaa;
+$white: #fff;
 
-$font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+$font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;

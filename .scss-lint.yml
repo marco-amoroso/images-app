@@ -1,0 +1,22 @@
+exclude:
+  - 'css/partials/reset.scss'
+linters:
+  DuplicateProperty:
+    enabled: false
+
+  Indentation:
+    enabled: true
+    character: space # or 'tab'
+    width: 2
+
+  NameFormat:
+    enabled: false
+    convention: BEM # hyphenated_lowercase # or 'BEM', or a regex pattern
+
+  NestingDepth:
+    enabled: true
+    max_depth: 4
+
+  SelectorFormat:
+    enabled: false
+    convention: 'BEM' # 'hyphenated_lowercase' or 'BEM', or 'snake_case', or 'camel_case', or a regex pattern
