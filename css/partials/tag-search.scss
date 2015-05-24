@@ -1,12 +1,18 @@
 .tag-search {
   position: fixed;
+  color: #FFF;
   right: 0;
-  bottom: 10px;
+  bottom: 0px;
   padding: 1em;
   background-color: $primary-color;
-  border-radius: 10px 0px 0px 10px;
-  color: #FFF;
+  width: 100%;
+  text-align: center;
 
+  @media #{$bp-medium} {
+    bottom: 10px;
+    width: auto;
+    border-radius: 10px 0px 0px 10px;
+  }
   .tag-search--strict {
     vertical-align: initial;
   }

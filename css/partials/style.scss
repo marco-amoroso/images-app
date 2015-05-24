@@ -2,6 +2,10 @@ body {
   font-family: $font-family;
 }
 
+.page {
+  margin-bottom: 5em;
+}
+
 .result {
   margin-bottom: 1em;
 }
@@ -25,7 +29,6 @@ body {
   padding: 0;
   margin: 0;
   width: 100%;
-  padding: 0.5em;
 
   @media #{$bp-medium} {
     width: 50%;

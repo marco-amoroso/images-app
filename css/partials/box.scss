@@ -1,0 +1,14 @@
+.box {
+  border-radius: 3px;
+  background-color: $secondary-color;
+  padding: 1em;
+  margin: 1em auto;
+  color: #FFF;
+  text-align: center;  
+  width: 80%;
+  display: none;
+
+  @media #{$bp-medium} {
+    width: 30%;
+  }
+}

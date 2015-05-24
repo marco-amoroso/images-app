@@ -1,115 +1,73 @@
 /*jslint browser: true*/
-/*global jQuery,Handlebars,apiKey*/
+/*global jQuery,Handlebars*/
 
 (function ($) {
   var loadedIds = [];
   var tagList, tagStrict;
 
   window.imageApp = window.imageApp || {};
-  
-  /**
-   * Returns all query string parameters
-   * @param {string} src Optional URL
-   * @returns {Object}
-   */
-
-  function getQueryParameters(src) {
-    var source, result = {};
-
-    if (src) {
-      source = src;
-    } else {
-      source = window.location.search;
-    }
-
-    var params = source.split(/\?|\&/);
-    params.shift();
-
-    $.each(params, function () {
-      var param = this.split('=');
-      result[param[0]] = param[1];
-    });
-
-    return result;
-  }
-  window.imageApp.getQueryParameters = getQueryParameters;
-  
-  function buildFlickrUrl(page, tags, strict) {
-    var base = 'https://api.flickr.com/services/rest/?';
-    
-    var options = {
-      method: 'flickr.photos.getRecent', // Default - `flickr.photos.search` does not accept empty tags
-      per_page : 36,
-      page: 1,
-      api_key: apiKey,
-      format: 'json',
-      tag_mode: 'any', // OR search
-      nojsoncallback: '1'
-    };
-
-    if (tags) {
-      options.method = 'flickr.photos.search';
-      options.tags = tags;
-    }
-
-    if (page) {
-      options.page = page;
-    }
-
-    if (strict === '1') {
-      options.tag_mode = 'all'; // AND search
-    }
-
-    // Build URL parameters to attach to Base URL
-    var search = '';
-    for (var key in options) {
-      if (search !== '' && key !== 0) {
-        search += '&';
-      }
-      search += key + '=' + encodeURIComponent(options[key]);
-    }
-    
-    return base + search;
-  }
-  window.imageApp.buildFlickrUrl = buildFlickrUrl;
 
   function loadImages(page) {
-    var url = buildFlickrUrl(page, tagList, tagStrict);
+    var url = window.imageApp.buildFlickrUrl(page, tagList, tagStrict),
+      messageBox;
+
+    // Show Loader
+    $('.spinner').show();
 
     $.getJSON( url, function(data) {
       var source = $('#image-template').html(),
         template = Handlebars.compile(source),
         newPhotos = [];
 
-      $.each(data.photos.photo, function() {
-        if ($.inArray(this.id, loadedIds) === -1) {
-          
-          // The photo hasn't been loaded before then we add it to the queue
-          newPhotos.push(this);
+      if (data.photos.pages === 0) {
+        // Add a flag to stop any future requests
+        $('.result').attr('data-load-images', 'false');
+        messageBox = 'There are no photos that match this search criteria';
+      
+      } else {
+        
+        $.each(data.photos.photo, function() {
+          if ($.inArray(this.id, loadedIds) === -1) {
+            // The photo hasn't been loaded before then we add it to the queue
+            newPhotos.push(this);
+            // Keep track of what has been loaded already
+            loadedIds.push(this.id);
+          }
+        });
+        
+        $('.result .list-image').append(template(newPhotos));
 
-          // Keep track of what has been loaded already
-          loadedIds.push(this.id);
+        // Update pagination information for the Infinite Scroll feature
+        $('.result').attr('data-page', data.photos.page);
+
+        // Check if the current page is equal to the total pages available 
+        if (data.photos.page === data.photos.pages) {
+          // Add a flag to stop any future requests
+          $('.result').attr('data-load-images', 'false');
+          
+          messageBox = 'There are no more photos for this search';
         }
-      });
+      }
+
+      // Message Box if any
+      if (messageBox) {
+        $('.result--box').show().html(messageBox);
+      }
       
       // Hide Loader
       $('.spinner').hide();
 
-      $('.result').append(template(newPhotos));
-
-      // Update pagination information for the Infinite Scroll feature
-      var pageCount = data.photos.page;
-      $('.result').attr('data-page', pageCount);
     });
   }
+  window.imageApp.loadImages = loadImages;
 
   $(function () {
-    var params = getQueryParameters();
-    
+    var params = window.imageApp.getQueryParameters();
+
     if (params.tags) {
       tagList = params.tags
       .replace(/[^\w\s]/gi, ' ')
-      .split(' ');  
+      .split(' ');
     }
 
     tagStrict = params.strict;
@@ -120,18 +78,22 @@
       // Update Tag List in Header
       var source = $('#tagslist-template').html();
       var template = Handlebars.compile(source);
-      $('.tags-list').html(template(tagList));  
+      $('.tags-list').html(template(tagList));
     }
 
     // Simple Infinite Scroll feature
     $(window).simpleInfiniteScroll({
       success: function () {
-        // Show Loader
-        $('.spinner').show();
         
+        // Check if we need to make the AJAX call
+        var loadFlag = $('.result').attr('data-load-images');
+        if (loadFlag === 'false') {
+          return;
+        }
+
         var pageCount = $('.result').attr('data-page');
         if (pageCount) {
-          loadImages(parseInt(pageCount) + 1);  
+          loadImages(parseInt(pageCount) + 1);
         }
       }
     });

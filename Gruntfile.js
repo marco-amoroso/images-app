@@ -59,6 +59,8 @@ module.exports = function(grunt) {
             '<%= bower_components %>/handlebars/handlebars.min.js',
             '<%= js_dir %>/globals.js',
             '<%= js_dir %>/simpleInfiniteScrolling.js',
+            '<%= js_dir %>/utility.js',
+            '<%= js_dir %>/flickrApiUrl.js',
             '<%= js_dir %>/script.js'
           ]
         }
